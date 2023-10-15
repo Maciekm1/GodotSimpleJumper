@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc8lanh78gcbg"]
+
+[ext_resource type="Script" path="res://Scenes/Obstacles/obstacle_ring_base.gd" id="1_8lrru"]
+[ext_resource type="Texture2D" uid="uid://ddvvrdadxq0d0" path="res://Assets/Sprites/Obstacles/Ring.png" id="1_61xwe"]
+[ext_resource type="Texture2D" uid="uid://nqutju0vx631" path="res://Assets/Sprites/Obstacles/RingOuter.png" id="2_paddy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkdwu"]
+size = Vector2(138, 28)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_b0yl6"]
+a = Vector2(0, -31)
+b = Vector2(0, 45)
+
+[node name="ObstacleRingBase" type="Node2D" groups=["Obstacle"]]
+script = ExtResource("1_8lrru")
+
+[node name="InnerRingSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_61xwe")
+
+[node name="OuterRingSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(52, 0)
+texture = ExtResource("2_paddy")
+
+[node name="DeathArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea2D"]
+position = Vector2(0, 56)
+shape = SubResource("RectangleShape2D_wkdwu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DeathArea2D"]
+position = Vector2(0, -56)
+shape = SubResource("RectangleShape2D_wkdwu")
+
+[node name="ScorePointArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScorePointArea2D"]
+position = Vector2(0, -7)
+shape = SubResource("SegmentShape2D_b0yl6")
+
+[connection signal="body_entered" from="DeathArea2D" to="." method="_on_death_area_2d_body_entered"]
+[connection signal="body_entered" from="ScorePointArea2D" to="." method="_on_score_point_area_2d_body_entered"]

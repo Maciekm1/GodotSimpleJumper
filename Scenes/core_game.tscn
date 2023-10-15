@@ -1,8 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://df7vmdboqheql"]
+[gd_scene load_steps=10 format=3 uid="uid://df7vmdboqheql"]
 
+[ext_resource type="Script" path="res://Scenes/core_game.gd" id="1_dy8pw"]
 [ext_resource type="PackedScene" uid="uid://wg5j15oaonnu" path="res://Scenes/player.tscn" id="1_kgfqi"]
+[ext_resource type="Texture2D" uid="uid://b2gldi12hvfk4" path="res://Assets/Sprites/BG/BG1.png" id="2_da4tk"]
+[ext_resource type="Script" path="res://Scenes/BG1.gd" id="2_n1qh1"]
+[ext_resource type="Texture2D" uid="uid://c0hfy4t6dpj63" path="res://Assets/Sprites/BG/bg2.png" id="3_fngtr"]
+[ext_resource type="PackedScene" uid="uid://da048wmb5q5p8" path="res://Scenes/Obstacles/obstacle_ring_easy.tscn" id="5_g7l1c"]
+[ext_resource type="Script" path="res://Scenes/ObstacleSpawner.gd" id="7_w82tf"]
+[ext_resource type="Script" path="res://Scripts/ObstacleSpawnInfo.gd" id="8_bupke"]
+
+[sub_resource type="Resource" id="Resource_whv0s"]
+script = ExtResource("8_bupke")
+obstacle = ExtResource("5_g7l1c")
+min_spawn_height = 141
+max_spawn_height = 575
+spawn_cooldown = 5
 
 [node name="CoreGame" type="Node2D"]
+script = ExtResource("1_dy8pw")
+
+[node name="BG" type="Node2D" parent="."]
+
+[node name="BG1" type="Sprite2D" parent="BG"]
+position = Vector2(2160, 360)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("2_da4tk")
+script = ExtResource("2_n1qh1")
+
+[node name="BG2" type="Sprite2D" parent="BG"]
+position = Vector2(720, 360)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("3_fngtr")
+script = ExtResource("2_n1qh1")
 
 [node name="Player" parent="." instance=ExtResource("1_kgfqi")]
 position = Vector2(640, 360)
+
+[node name="ObstacleSpawner" type="Node2D" parent="."]
+script = ExtResource("7_w82tf")
+obstacle_resource_array = Array[ExtResource("8_bupke")]([SubResource("Resource_whv0s")])
+
+[node name="SpawnCooldown" type="Timer" parent="ObstacleSpawner"]
+
+[connection signal="obstacle_spawned" from="ObstacleSpawner" to="." method="_on_obstacle_spawner_obstacle_spawned"]
+[connection signal="timeout" from="ObstacleSpawner/SpawnCooldown" to="ObstacleSpawner" method="_on_spawn_cooldown_timeout"]

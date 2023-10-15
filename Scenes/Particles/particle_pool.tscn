@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://blrn33losjkud"]
+
+[ext_resource type="Script" path="res://Scenes/ParticlePool.gd" id="1_0xh4n"]
+[ext_resource type="PackedScene" uid="uid://8or1n1214gc1" path="res://Scenes/Particles/PixelExplosion.tscn" id="2_yg8ya"]
+
+[node name="ParticlePool" type="Node2D"]
+script = ExtResource("1_0xh4n")
+particle = ExtResource("2_yg8ya")
