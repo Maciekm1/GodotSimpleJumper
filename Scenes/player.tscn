@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://wg5j15oaonnu"]
+[gd_scene load_steps=7 format=3 uid="uid://wg5j15oaonnu"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_a1aoq"]
 [ext_resource type="Texture2D" uid="uid://do1b6vb660jbf" path="res://Assets/Sprites/Player/PlayerBox.png" id="1_fqhn6"]
 [ext_resource type="PackedScene" uid="uid://blrn33losjkud" path="res://Scenes/Particles/particle_pool.tscn" id="3_jb85b"]
-[ext_resource type="PackedScene" uid="uid://cvitpxkt3ul58" path="res://Scenes/Particles/player_death_particles.tscn" id="4_nhwbt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87iod"]
 size = Vector2(72, 72)
@@ -50,7 +49,3 @@ position = Vector2(0, 51)
 libraries = {
 "": SubResource("AnimationLibrary_1ohbd")
 }
-
-[node name="DeathParticles" parent="." instance=ExtResource("4_nhwbt")]
-position = Vector2(-35, -35)
-scale = Vector2(0.55, 0.55)

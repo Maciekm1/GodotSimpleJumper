@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvlbmgr8k6x7k"]
+
+[ext_resource type="Texture2D" uid="uid://do1b6vb660jbf" path="res://Assets/Sprites/Player/PlayerBox.png" id="1_ihlc5"]
+[ext_resource type="Script" path="res://Scenes/Obstacles/moving_platform.gd" id="1_t51u7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dien8"]
+size = Vector2(526, 48)
+
+[node name="movingPlatform" type="StaticBody2D"]
+script = ExtResource("1_t51u7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.843137, 0.482353, 0.729412, 1)
+texture_filter = 1
+scale = Vector2(5, 0.5)
+texture = ExtResource("1_ihlc5")
+region_enabled = true
+region_rect = Rect2(10, 15.5, 105, 95)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dien8")

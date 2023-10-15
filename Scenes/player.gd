@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var jump_force: int = 400
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var deathParticles: PackedScene = preload("res://Scenes/Particles/player_death_particles.tscn")
 var alive: bool = true
 
 func _physics_process(delta):
@@ -24,6 +25,11 @@ func die():
 		alive = false
 		$CollisionShape2D.set_deferred("disabled", true)
 		$Sprite2D.hide()
-		$DeathParticles.emitting = true
-		await get_tree().create_timer(5.0).timeout
-		queue_free()
+		
+		var deathParticlesInstance = deathParticles.instantiate() as CPUParticles2D
+		add_child(deathParticlesInstance)
+		deathParticlesInstance.emitting = true
+		deathParticlesInstance.lifetime = 4
+#
+#		await get_tree().create_timer(4).timeout
+#		queue_free()
