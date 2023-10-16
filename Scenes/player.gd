@@ -30,6 +30,7 @@ func die():
 		add_child(deathParticlesInstance)
 		deathParticlesInstance.emitting = true
 		deathParticlesInstance.lifetime = 4
-#
-#		await get_tree().create_timer(4).timeout
-#		queue_free()
+		#deathParticlesInstance.look_at(velocity.normalized())
+		
+		await get_tree().create_timer(4).timeout
+		queue_free()

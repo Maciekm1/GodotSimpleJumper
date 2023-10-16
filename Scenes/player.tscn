@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://blrn33losjkud" path="res://Scenes/Particles/particle_pool.tscn" id="3_jb85b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87iod"]
-size = Vector2(72, 72)
+size = Vector2(68.5, 68.5)
 
 [sub_resource type="Animation" id="Animation_jd8c4"]
 resource_name = "jump"
@@ -38,6 +38,7 @@ scale = Vector2(0.55, 0.55)
 texture = ExtResource("1_fqhn6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, 0.25)
 shape = SubResource("RectangleShape2D_87iod")
 
 [node name="ParticlePool" parent="." instance=ExtResource("3_jb85b")]

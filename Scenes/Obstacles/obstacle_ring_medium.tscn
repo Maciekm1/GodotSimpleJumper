@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuaia8gjkngfd"]
+
+[ext_resource type="PackedScene" uid="uid://cc8lanh78gcbg" path="res://Scenes/Obstacles/obstacle_ring_base.tscn" id="1_inl7t"]
+
+[node name="ObstacleRingMedium" instance=ExtResource("1_inl7t")]
+speed = 450
+pointGain = 3
+
+[node name="InnerRingSprite" parent="." index="0"]
+modulate = Color(0.572549, 0.462745, 0, 1)
+scale = Vector2(1.1, 1.5)
+
+[node name="OuterRingSprite" parent="." index="1"]
+modulate = Color(0.572549, 0.462745, 0, 1)
+position = Vector2(57, 0)
+scale = Vector2(1.1, 1.5)
+
+[node name="CollisionShape2D" parent="DeathArea2D" index="0"]
+position = Vector2(-4.5, 83.5)
+
+[node name="CollisionShape2D2" parent="DeathArea2D" index="1"]
+position = Vector2(-5, -84)
+
+[node name="CollisionShape2D" parent="ScorePointArea2D" index="0"]
+position = Vector2(0, -36)

@@ -4,6 +4,7 @@ var points: int = 0
 	
 func player_gain_point(amount) -> void:
 	points += amount
+	$UI.update_points_counter(points)
 
 func _on_obstacle_spawner_obstacle_spawned(obstacle):
 	obstacle.connect("playerDeath", player_death)
