@@ -17,14 +17,6 @@ b = Vector2(0, 102)
 script = ExtResource("2_aql58")
 speed = 350
 
-[node name="InnerRingSprite" parent="." index="0"]
-scale = Vector2(1.1, 2)
-
-[node name="OuterRingSprite" parent="." index="1"]
-z_index = 10
-position = Vector2(57, 0)
-scale = Vector2(1.1, 2)
-
 [node name="CollisionShape2D" parent="DeathArea2D" index="0"]
 position = Vector2(-4.5, 113)
 shape = SubResource("RectangleShape2D_hqv5p")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://df7vmdboqheql"]
+[gd_scene load_steps=21 format=3 uid="uid://df7vmdboqheql"]
 
 [ext_resource type="Script" path="res://Scenes/core_game.gd" id="1_dy8pw"]
 [ext_resource type="PackedScene" uid="uid://wg5j15oaonnu" path="res://Scenes/player.tscn" id="1_kgfqi"]
@@ -9,10 +9,12 @@
 [ext_resource type="Script" path="res://Scenes/ObstacleSpawner.gd" id="7_w82tf"]
 [ext_resource type="Script" path="res://Scripts/ObstacleSpawnInfo.gd" id="8_bupke"]
 [ext_resource type="PackedScene" uid="uid://bvlbmgr8k6x7k" path="res://Scenes/Obstacles/moving_platform.tscn" id="9_3aubm"]
-[ext_resource type="PackedScene" uid="uid://cuaia8gjkngfd" path="res://Scenes/Obstacles/obstacle_ring_medium.tscn" id="9_7w05b"]
+[ext_resource type="PackedScene" uid="uid://in3jgpeco5fq" path="res://Scenes/Obstacles/obstacle_ring_rotating.tscn" id="9_jgvx3"]
 [ext_resource type="Script" path="res://Scenes/GameBoundryTop.gd" id="10_hrgsy"]
+[ext_resource type="PackedScene" uid="uid://cvojwn8p4n1r8" path="res://Scenes/Obstacles/obstacle_ring_tunnel.tscn" id="10_scl1l"]
 [ext_resource type="Script" path="res://Scenes/GameBoundryBot.gd" id="11_gg8id"]
 [ext_resource type="Script" path="res://Scenes/UI.gd" id="12_dkhpx"]
+[ext_resource type="FontFile" uid="uid://n5lx87yxg6jy" path="res://Assets/Fonts/TitilliumWeb-Regular.ttf" id="15_mtrl2"]
 
 [sub_resource type="Resource" id="Resource_whv0s"]
 script = ExtResource("8_bupke")
@@ -21,11 +23,18 @@ min_spawn_height = 141
 max_spawn_height = 575
 spawn_cooldown = 4
 
-[sub_resource type="Resource" id="Resource_jqrih"]
+[sub_resource type="Resource" id="Resource_4bjqx"]
 script = ExtResource("8_bupke")
-obstacle = ExtResource("9_7w05b")
-min_spawn_height = 141
-max_spawn_height = 575
+obstacle = ExtResource("9_jgvx3")
+min_spawn_height = 160
+max_spawn_height = 550
+spawn_cooldown = 5
+
+[sub_resource type="Resource" id="Resource_inksu"]
+script = ExtResource("8_bupke")
+obstacle = ExtResource("10_scl1l")
+min_spawn_height = 200
+max_spawn_height = 500
 spawn_cooldown = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m63e1"]
@@ -58,7 +67,7 @@ position = Vector2(640, 360)
 
 [node name="ObstacleSpawner" type="Node2D" parent="."]
 script = ExtResource("7_w82tf")
-obstacle_resource_array = Array[ExtResource("8_bupke")]([SubResource("Resource_whv0s"), SubResource("Resource_jqrih")])
+obstacle_resource_array = Array[ExtResource("8_bupke")]([SubResource("Resource_whv0s"), SubResource("Resource_4bjqx"), SubResource("Resource_inksu")])
 
 [node name="SpawnCooldown" type="Timer" parent="ObstacleSpawner"]
 
@@ -96,10 +105,19 @@ theme_override_constants/margin_top = 25
 
 [node name="Label" type="Label" parent="UI/MarginContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("15_mtrl2")
 theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ScreenDark" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
 
 [connection signal="obstacle_spawned" from="ObstacleSpawner" to="." method="_on_obstacle_spawner_obstacle_spawned"]
 [connection signal="timeout" from="ObstacleSpawner/SpawnCooldown" to="ObstacleSpawner" method="_on_spawn_cooldown_timeout"]

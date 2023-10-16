@@ -19,3 +19,5 @@ func _on_game_boundry_bot_body_entered(body):
 
 func player_death() -> void:
 	$Player.die()
+	await get_tree().create_timer(2).timeout
+	get_tree().create_tween().tween_property($UI/ScreenDark, "color:a", 0.5, 1)

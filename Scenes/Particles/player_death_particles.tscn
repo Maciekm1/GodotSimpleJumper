@@ -5,7 +5,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="CPUParticles2D" type="CPUParticles2D"]
-position = Vector2(-64, -64)
+position = Vector2(-32, -32)
 scale = Vector2(0.55, 0.55)
 emitting = false
 amount = 600

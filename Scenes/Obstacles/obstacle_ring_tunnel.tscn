@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvojwn8p4n1r8"]
+
+[ext_resource type="PackedScene" uid="uid://cc8lanh78gcbg" path="res://Scenes/Obstacles/obstacle_ring_base.tscn" id="1_p2pud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_koyuo"]
+size = Vector2(193, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aw804"]
+size = Vector2(191, 28)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_murx2"]
+a = Vector2(0, -87)
+b = Vector2(0, 99)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_21twx"]
+a = Vector2(-88, -94)
+b = Vector2(-87, 94)
+
+[node name="ObstacleRingTunnel" instance=ExtResource("1_p2pud")]
+speed = 250
+
+[node name="InnerRingSprite" parent="." index="0"]
+scale = Vector2(2.2, 2)
+
+[node name="OuterRingSprite" parent="." index="1"]
+position = Vector2(114.5, 0)
+scale = Vector2(2.2, 2)
+
+[node name="CollisionShape2D" parent="DeathArea2D" index="0"]
+position = Vector2(-9.5, 113)
+shape = SubResource("RectangleShape2D_koyuo")
+
+[node name="CollisionShape2D2" parent="DeathArea2D" index="1"]
+position = Vector2(-8.5, -112)
+shape = SubResource("RectangleShape2D_aw804")
+
+[node name="CollisionShape2D" parent="ScorePointArea2D" index="0"]
+shape = SubResource("SegmentShape2D_murx2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ScorePointArea2D" index="1"]
+shape = SubResource("SegmentShape2D_21twx")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ScorePointArea2D" index="2"]
+position = Vector2(154, -1)
+shape = SubResource("SegmentShape2D_21twx")

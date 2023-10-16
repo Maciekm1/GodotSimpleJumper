@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://in3jgpeco5fq"]
+
+[ext_resource type="PackedScene" uid="uid://cc8lanh78gcbg" path="res://Scenes/Obstacles/obstacle_ring_base.tscn" id="1_jqkv5"]
+[ext_resource type="Script" path="res://Scenes/Obstacles/obstacle_ring_rotating.gd" id="2_bdh7d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_47xjv"]
+size = Vector2(120.75, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjk6u"]
+size = Vector2(120.75, 36)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rns3p"]
+a = Vector2(0, -109)
+b = Vector2(0, 123)
+
+[node name="ObstacleRingRotating" instance=ExtResource("1_jqkv5")]
+script = ExtResource("2_bdh7d")
+rotation_speed = 60
+speed = 350
+pointGain = 3
+
+[node name="InnerRingSprite" parent="." index="0"]
+scale = Vector2(1.375, 2.5)
+
+[node name="OuterRingSprite" parent="." index="1"]
+position = Vector2(71.5, 0)
+scale = Vector2(1.375, 2.5)
+
+[node name="CollisionShape2D" parent="DeathArea2D" index="0"]
+position = Vector2(-5.75, 140)
+shape = SubResource("RectangleShape2D_47xjv")
+
+[node name="CollisionShape2D2" parent="DeathArea2D" index="1"]
+position = Vector2(-5.375, -140)
+shape = SubResource("RectangleShape2D_bjk6u")
+
+[node name="CollisionShape2D" parent="ScorePointArea2D" index="0"]
+shape = SubResource("SegmentShape2D_rns3p")
