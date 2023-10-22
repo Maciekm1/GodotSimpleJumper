@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo0553qdbclfj"]
+
+[ext_resource type="Script" path="res://Scenes/Obstacles/obstacle_collection.gd" id="1_n0l8h"]
+[ext_resource type="PackedScene" uid="uid://bt6kumjm0ygn0" path="res://Scenes/Obstacles/obstacle_ring_move_y.tscn" id="1_wmc2s"]
+
+[node name="ObstacleSnakeMoveY" type="Node2D" groups=["Obstacle"]]
+script = ExtResource("1_n0l8h")
+
+[node name="ObstacleRingMoveY" parent="." instance=ExtResource("1_wmc2s")]
+move_speed_y = 1.0
+
+[node name="ObstacleRingMoveY3" parent="." instance=ExtResource("1_wmc2s")]
+position = Vector2(400, -50)
+move_speed_y = 1.5
+
+[node name="ObstacleRingMoveY5" parent="." instance=ExtResource("1_wmc2s")]
+position = Vector2(800, -100)

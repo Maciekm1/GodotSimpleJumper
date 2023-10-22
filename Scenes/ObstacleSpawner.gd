@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var enabled: bool = true
 @export var obstacle_resource_array: Array[Obstacle_Spawn_Info_Resource]
 @export var spawn_point_x: int = 2160
 
@@ -8,7 +9,7 @@ extends Node2D
 signal obstacle_spawned(obstacle: Node2D)
 		
 func _process(delta):
-	if can_spawn:
+	if enabled and can_spawn:
 		var obstacle_resource: Obstacle_Spawn_Info_Resource  = obstacle_resource_array[randi() % obstacle_resource_array.size()]
 		spawn_obstacle(obstacle_resource)
 		can_spawn = false

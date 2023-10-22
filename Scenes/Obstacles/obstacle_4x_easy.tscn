@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8esu4b6twtam"]
+
+[ext_resource type="Script" path="res://Scenes/Obstacles/obstacle_collection.gd" id="1_3uejr"]
+[ext_resource type="PackedScene" uid="uid://da048wmb5q5p8" path="res://Scenes/Obstacles/obstacle_ring_easy.tscn" id="2_d01s2"]
+[ext_resource type="PackedScene" uid="uid://bt6kumjm0ygn0" path="res://Scenes/Obstacles/obstacle_ring_move_y.tscn" id="3_b1why"]
+
+[node name="Obstacle_4xEasy" type="Node2D"]
+script = ExtResource("1_3uejr")
+
+[node name="ObstacleRingEasy" parent="." instance=ExtResource("2_d01s2")]
+position = Vector2(-204, -208)
+rotation = 0.785398
+
+[node name="ObstacleRingEasy2" parent="." instance=ExtResource("2_d01s2")]
+position = Vector2(-204, 192)
+rotation = -0.785398
+
+[node name="ObstacleRingEasy3" parent="." instance=ExtResource("2_d01s2")]
+position = Vector2(196, -208)
+rotation = -0.785398
+
+[node name="ObstacleRingEasy4" parent="." instance=ExtResource("2_d01s2")]
+position = Vector2(196, 192)
+rotation = 0.785398
+
+[node name="ObstacleRingMoveY" parent="." instance=ExtResource("3_b1why")]
+position = Vector2(0, -175)

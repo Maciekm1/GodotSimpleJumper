@@ -1,9 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://df7vmdboqheql"]
+[gd_scene load_steps=27 format=3 uid="uid://df7vmdboqheql"]
 
 [ext_resource type="Script" path="res://Scenes/core_game.gd" id="1_dy8pw"]
 [ext_resource type="PackedScene" uid="uid://wg5j15oaonnu" path="res://Scenes/player.tscn" id="1_kgfqi"]
+[ext_resource type="Script" path="res://Scenes/ScrollableBG.gd" id="2_arqeg"]
 [ext_resource type="Texture2D" uid="uid://b2gldi12hvfk4" path="res://Assets/Sprites/BG/BG1.png" id="2_da4tk"]
-[ext_resource type="Script" path="res://Scenes/BG1.gd" id="2_n1qh1"]
 [ext_resource type="Texture2D" uid="uid://c0hfy4t6dpj63" path="res://Assets/Sprites/BG/bg2.png" id="3_fngtr"]
 [ext_resource type="PackedScene" uid="uid://da048wmb5q5p8" path="res://Scenes/Obstacles/obstacle_ring_easy.tscn" id="5_g7l1c"]
 [ext_resource type="Script" path="res://Scenes/ObstacleSpawner.gd" id="7_w82tf"]
@@ -13,7 +13,10 @@
 [ext_resource type="Script" path="res://Scenes/GameBoundryTop.gd" id="10_hrgsy"]
 [ext_resource type="PackedScene" uid="uid://cvojwn8p4n1r8" path="res://Scenes/Obstacles/obstacle_ring_tunnel.tscn" id="10_scl1l"]
 [ext_resource type="Script" path="res://Scenes/GameBoundryBot.gd" id="11_gg8id"]
+[ext_resource type="PackedScene" uid="uid://bt6kumjm0ygn0" path="res://Scenes/Obstacles/obstacle_ring_move_y.tscn" id="11_ypei0"]
+[ext_resource type="PackedScene" uid="uid://bo0553qdbclfj" path="res://Scenes/Obstacles/obstacle_snake_move_y.tscn" id="12_536tv"]
 [ext_resource type="Script" path="res://Scenes/UI.gd" id="12_dkhpx"]
+[ext_resource type="PackedScene" uid="uid://b8esu4b6twtam" path="res://Scenes/Obstacles/obstacle_4x_easy.tscn" id="13_apqpo"]
 [ext_resource type="FontFile" uid="uid://n5lx87yxg6jy" path="res://Assets/Fonts/TitilliumWeb-Regular.ttf" id="15_mtrl2"]
 
 [sub_resource type="Resource" id="Resource_whv0s"]
@@ -37,6 +40,27 @@ min_spawn_height = 200
 max_spawn_height = 500
 spawn_cooldown = 5
 
+[sub_resource type="Resource" id="Resource_ma833"]
+script = ExtResource("8_bupke")
+obstacle = ExtResource("11_ypei0")
+min_spawn_height = 100
+max_spawn_height = 337
+spawn_cooldown = 5
+
+[sub_resource type="Resource" id="Resource_o8kf7"]
+script = ExtResource("8_bupke")
+obstacle = ExtResource("12_536tv")
+min_spawn_height = 150
+max_spawn_height = 200
+spawn_cooldown = 6
+
+[sub_resource type="Resource" id="Resource_s0bq1"]
+script = ExtResource("8_bupke")
+obstacle = ExtResource("13_apqpo")
+min_spawn_height = 200
+max_spawn_height = 400
+spawn_cooldown = 7
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m63e1"]
 size = Vector2(1284, 15)
 
@@ -46,36 +70,47 @@ size = Vector2(1284, 15)
 [node name="CoreGame" type="Node2D"]
 script = ExtResource("1_dy8pw")
 
-[node name="BG" type="Node2D" parent="."]
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
 
-[node name="BG1" type="Sprite2D" parent="BG"]
-position = Vector2(2160, 360)
-scale = Vector2(2.25, 2.25)
-texture = ExtResource("2_da4tk")
-script = ExtResource("2_n1qh1")
-scroll_speed = 350
-
-[node name="BG2" type="Sprite2D" parent="BG"]
-position = Vector2(720, 360)
-scale = Vector2(2.25, 2.25)
+[node name="BG1" type="TextureRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_fngtr")
-script = ExtResource("2_n1qh1")
-scroll_speed = 350
+script = ExtResource("2_arqeg")
+scroll_speed = 0
+
+[node name="BG2" type="TextureRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_da4tk")
+script = ExtResource("2_arqeg")
+scroll_speed = 0
+order = 1
 
 [node name="Player" parent="." instance=ExtResource("1_kgfqi")]
 position = Vector2(640, 360)
 
 [node name="ObstacleSpawner" type="Node2D" parent="."]
+position = Vector2(-10, 3)
 script = ExtResource("7_w82tf")
-obstacle_resource_array = Array[ExtResource("8_bupke")]([SubResource("Resource_whv0s"), SubResource("Resource_4bjqx"), SubResource("Resource_inksu")])
+enabled = false
+obstacle_resource_array = Array[ExtResource("8_bupke")]([SubResource("Resource_whv0s"), SubResource("Resource_4bjqx"), SubResource("Resource_inksu"), SubResource("Resource_ma833"), SubResource("Resource_o8kf7"), SubResource("Resource_s0bq1")])
 
 [node name="SpawnCooldown" type="Timer" parent="ObstacleSpawner"]
 
 [node name="movingPlatform" parent="." instance=ExtResource("9_3aubm")]
-position = Vector2(908, 545)
-scroll_speed = 350
+position = Vector2(1104, 545)
+scroll_speed = 0
 
 [node name="GameBoundryTop" type="Area2D" parent="."]
+visible = false
 script = ExtResource("10_hrgsy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoundryTop"]
@@ -83,6 +118,7 @@ position = Vector2(642, -7.5)
 shape = SubResource("RectangleShape2D_m63e1")
 
 [node name="GameBoundryBot" type="Area2D" parent="."]
+visible = false
 script = ExtResource("11_gg8id")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoundryBot"]
@@ -103,7 +139,7 @@ offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 25
 
-[node name="Label" type="Label" parent="UI/MarginContainer"]
+[node name="ScoreCounter" type="Label" parent="UI/MarginContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("15_mtrl2")
 theme_override_font_sizes/font_size = 64

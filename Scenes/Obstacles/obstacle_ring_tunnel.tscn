@@ -20,9 +20,11 @@ b = Vector2(-87, 94)
 speed = 250
 
 [node name="InnerRingSprite" parent="." index="0"]
+texture_filter = 3
 scale = Vector2(2.2, 2)
 
 [node name="OuterRingSprite" parent="." index="1"]
+texture_filter = 3
 position = Vector2(114.5, 0)
 scale = Vector2(2.2, 2)
 
@@ -35,11 +37,13 @@ position = Vector2(-8.5, -112)
 shape = SubResource("RectangleShape2D_aw804")
 
 [node name="CollisionShape2D" parent="ScorePointArea2D" index="0"]
+position = Vector2(-6, -7)
 shape = SubResource("SegmentShape2D_murx2")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ScorePointArea2D" index="1"]
+position = Vector2(-10, -1)
 shape = SubResource("SegmentShape2D_21twx")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="ScorePointArea2D" index="2"]
-position = Vector2(154, -1)
+position = Vector2(171, -1)
 shape = SubResource("SegmentShape2D_21twx")

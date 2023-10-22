@@ -15,7 +15,7 @@ b = Vector2(0, 123)
 
 [node name="ObstacleRingRotating" instance=ExtResource("1_jqkv5")]
 script = ExtResource("2_bdh7d")
-rotation_speed = 60
+rotation_speed = 45
 speed = 350
 pointGain = 3
 

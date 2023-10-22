@@ -5,5 +5,5 @@ var bg_width: int = 1440
 
 func _process(delta):
 	position.x -= scroll_speed * delta
-	if position.x <= -720:
+	if position.x <= -(bg_width/2):
 		position.x += bg_width * 2
