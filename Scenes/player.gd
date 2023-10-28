@@ -1,16 +1,31 @@
 extends CharacterBody2D
+class_name Player
 
 @export var jump_force: int = 400
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var deathParticles: PackedScene = preload("res://Scenes/Particles/player_death_particles2.tscn")
 var alive: bool = true
 
+var reversed: bool = false:
+	set(value):
+		if value:
+			rotation_degrees = 180
+		else:
+			rotation_degrees = 0
+		reversed = value
+		
+func _ready():
+	Globals.player = self
+
 func _physics_process(delta):
+	if(Input.is_action_just_pressed("SecondaryAction")):
+		reversed = not reversed
+	
 	if(get_parent().started):
-		velocity.y += gravity * delta
+		velocity.y += (gravity * delta) if not reversed else -(gravity * delta)
 	
 	if(Input.is_action_just_pressed("Jump") and alive):
-		velocity.y = -jump_force
+		velocity.y = (-jump_force) if not reversed else jump_force
 		
 		$ParticlePool.get_next_particle().global_position = $ParticleSpawnPoint.global_position
 		$ParticlePool.trigger()

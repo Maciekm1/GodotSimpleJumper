@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://kf6110wimrmw"]
+
+[ext_resource type="Script" path="res://PickUp.gd" id="1_sywxp"]
+
+[node name="PickUp" type="Area2D" groups=["PickUp"]]
+collision_layer = 2
+script = ExtResource("1_sywxp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

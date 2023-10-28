@@ -1,7 +1,7 @@
 extends TextureRect
 
 @export var scroll_speed: int = 250
-@onready var bg_width: int = size.x
+@onready var bg_width: float = size.x
 @export var order: int = 0
 
 func _ready():

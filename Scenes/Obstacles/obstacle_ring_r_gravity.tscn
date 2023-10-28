@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbav8xqs4nkxf"]
+
+[ext_resource type="PackedScene" uid="uid://cc8lanh78gcbg" path="res://Scenes/Obstacles/obstacle_ring_base.tscn" id="1_yai0k"]
+[ext_resource type="PackedScene" uid="uid://caycceyqqg4en" path="res://Scenes/PickUps/reverse_pick_up.tscn" id="2_x0eqg"]
+[ext_resource type="Script" path="res://Scenes/Obstacles/obstacle_ring_easy.gd" id="2_yl4yb"]
+
+[node name="ObstacleRingRGravity" instance=ExtResource("1_yai0k")]
+script = ExtResource("2_yl4yb")
+speed = 350
+pointGain = 2
+
+[node name="ReversePickUp" parent="." index="0" instance=ExtResource("2_x0eqg")]
+scroll_speed = 0

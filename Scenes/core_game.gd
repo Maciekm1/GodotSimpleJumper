@@ -16,6 +16,7 @@ var started:bool:
 			$Background/BG1.scroll_speed = 0
 			$Background/BG2.scroll_speed = 0
 			$movingPlatform.scroll_speed = 0
+			
 		started = value
 	
 	
@@ -30,9 +31,9 @@ func reset_player_points() -> void:
 	points = 0
 
 func _on_obstacle_spawner_obstacle_spawned(obstacle):
-	obstacle.connect("playerDeath", player_death)
-	obstacle.connect("playerScorePoint", player_gain_point)
-
+	if obstacle.is_in_group("Obstacle"):
+		obstacle.connect("playerDeath", player_death)
+		obstacle.connect("playerScorePoint", player_gain_point)
 
 func _on_game_boundry_top_body_entered(body):
 	player_death()
@@ -53,3 +54,6 @@ func player_death() -> void:
 	get_tree().create_tween().tween_property($UI/ScreenDark, "color:a", 0.5, 1)
 	await get_tree().create_timer(2).timeout
 	get_tree().create_tween().tween_property($UI/ScreenDark, "color:a", 0, 1)
+
+func player_gain_pick_up(pick_up: PickUpBase) -> void:
+	pick_up.apply_effect($Player as Player)

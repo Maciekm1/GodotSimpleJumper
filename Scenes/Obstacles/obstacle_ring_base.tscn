@@ -27,6 +27,7 @@ scale = Vector2(1.1, 2)
 texture = ExtResource("2_paddy")
 
 [node name="DeathArea2D" type="Area2D" parent="."]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea2D"]
 position = Vector2(-5, 113)
@@ -37,6 +38,7 @@ position = Vector2(-5, -112)
 shape = SubResource("RectangleShape2D_wkdwu")
 
 [node name="ScorePointArea2D" type="Area2D" parent="."]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScorePointArea2D"]
 position = Vector2(0, -7)

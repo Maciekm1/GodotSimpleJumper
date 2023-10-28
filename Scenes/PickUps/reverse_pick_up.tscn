@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://caycceyqqg4en"]
+
+[ext_resource type="PackedScene" uid="uid://kf6110wimrmw" path="res://Scenes/PickUps/pick_up.tscn" id="1_po2j0"]
+[ext_resource type="Script" path="res://Scenes/PickUps/reverse_pick_up.gd" id="2_7w5s7"]
+[ext_resource type="Texture2D" uid="uid://ipl68qatuv2w" path="res://Assets/Sprites/PickUp/ReversePickup.png" id="2_kf2ui"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2pqq"]
+size = Vector2(45, 46)
+
+[node name="ReversePickUp" instance=ExtResource("1_po2j0")]
+script = ExtResource("2_7w5s7")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_kf2ui")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_t2pqq")

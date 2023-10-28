@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://df7vmdboqheql"]
+[gd_scene load_steps=29 format=3 uid="uid://df7vmdboqheql"]
 
 [ext_resource type="Script" path="res://Scenes/core_game.gd" id="1_dy8pw"]
 [ext_resource type="PackedScene" uid="uid://wg5j15oaonnu" path="res://Scenes/player.tscn" id="1_kgfqi"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bo0553qdbclfj" path="res://Scenes/Obstacles/obstacle_snake_move_y.tscn" id="12_536tv"]
 [ext_resource type="Script" path="res://Scenes/UI.gd" id="12_dkhpx"]
 [ext_resource type="PackedScene" uid="uid://b8esu4b6twtam" path="res://Scenes/Obstacles/obstacle_4x_easy.tscn" id="13_apqpo"]
+[ext_resource type="PackedScene" uid="uid://caycceyqqg4en" path="res://Scenes/PickUps/reverse_pick_up.tscn" id="14_3ffig"]
 [ext_resource type="FontFile" uid="uid://n5lx87yxg6jy" path="res://Assets/Fonts/TitilliumWeb-Regular.ttf" id="15_mtrl2"]
 
 [sub_resource type="Resource" id="Resource_whv0s"]
@@ -61,6 +62,13 @@ min_spawn_height = 200
 max_spawn_height = 400
 spawn_cooldown = 7
 
+[sub_resource type="Resource" id="Resource_q1svx"]
+script = ExtResource("8_bupke")
+obstacle = ExtResource("14_3ffig")
+min_spawn_height = 141
+max_spawn_height = 575
+spawn_cooldown = 4
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m63e1"]
 size = Vector2(1284, 15)
 
@@ -82,6 +90,7 @@ grow_vertical = 2
 texture = ExtResource("3_fngtr")
 script = ExtResource("2_arqeg")
 scroll_speed = 0
+metadata/_edit_lock_ = true
 
 [node name="BG2" type="TextureRect" parent="Background"]
 anchors_preset = 15
@@ -93,25 +102,31 @@ texture = ExtResource("2_da4tk")
 script = ExtResource("2_arqeg")
 scroll_speed = 0
 order = 1
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_kgfqi")]
 position = Vector2(640, 360)
+metadata/_edit_lock_ = true
 
 [node name="ObstacleSpawner" type="Node2D" parent="."]
 position = Vector2(-10, 3)
 script = ExtResource("7_w82tf")
 enabled = false
-obstacle_resource_array = Array[ExtResource("8_bupke")]([SubResource("Resource_whv0s"), SubResource("Resource_4bjqx"), SubResource("Resource_inksu"), SubResource("Resource_ma833"), SubResource("Resource_o8kf7"), SubResource("Resource_s0bq1")])
+obstacle_resource_array = Array[ExtResource("8_bupke")]([SubResource("Resource_whv0s"), SubResource("Resource_4bjqx"), SubResource("Resource_inksu"), SubResource("Resource_ma833"), SubResource("Resource_o8kf7"), SubResource("Resource_s0bq1"), SubResource("Resource_q1svx")])
+metadata/_edit_lock_ = true
 
 [node name="SpawnCooldown" type="Timer" parent="ObstacleSpawner"]
 
 [node name="movingPlatform" parent="." instance=ExtResource("9_3aubm")]
 position = Vector2(1104, 545)
+collision_layer = 4
 scroll_speed = 0
+metadata/_edit_lock_ = true
 
 [node name="GameBoundryTop" type="Area2D" parent="."]
 visible = false
 script = ExtResource("10_hrgsy")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoundryTop"]
 position = Vector2(642, -7.5)
@@ -120,6 +135,7 @@ shape = SubResource("RectangleShape2D_m63e1")
 [node name="GameBoundryBot" type="Area2D" parent="."]
 visible = false
 script = ExtResource("11_gg8id")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoundryBot"]
 position = Vector2(642, 728)
@@ -138,6 +154,7 @@ offset_right = 20.0
 offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 25
+metadata/_edit_lock_ = true
 
 [node name="ScoreCounter" type="Label" parent="UI/MarginContainer"]
 layout_mode = 2
@@ -154,6 +171,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
+metadata/_edit_lock_ = true
 
 [connection signal="obstacle_spawned" from="ObstacleSpawner" to="." method="_on_obstacle_spawner_obstacle_spawned"]
 [connection signal="timeout" from="ObstacleSpawner/SpawnCooldown" to="ObstacleSpawner" method="_on_spawn_cooldown_timeout"]

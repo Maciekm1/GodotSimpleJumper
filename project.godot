@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.1", "Mobile")
 run/max_fps=144
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*res://Scripts/Globals.gd"
+
 [display]
 
 window/size/viewport_width=1280
@@ -39,6 +43,20 @@ Jump={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(237, 6),"global_position":Vector2(241, 49),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+SecondaryAction={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(95, 14),"global_position":Vector2(99, 57),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+
+[layer_names]
+
+2d_render/layer_1="Player"
+2d_render/layer_2="PickUp"
+2d_render/layer_3="Obstacle"
+2d_physics/layer_1="Player"
+2d_physics/layer_2="PickUp"
+2d_physics/layer_3="Obstacle"
 
 [rendering]
 

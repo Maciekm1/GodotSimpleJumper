@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://da048wmb5q5p8" path="res://Scenes/Obstacles/obstacle_ring_easy.tscn" id="2_d01s2"]
 [ext_resource type="PackedScene" uid="uid://bt6kumjm0ygn0" path="res://Scenes/Obstacles/obstacle_ring_move_y.tscn" id="3_b1why"]
 
-[node name="Obstacle_4xEasy" type="Node2D"]
+[node name="Obstacle_4xEasy" type="Node2D" groups=["Obstacle"]]
 script = ExtResource("1_3uejr")
 
 [node name="ObstacleRingEasy" parent="." instance=ExtResource("2_d01s2")]
